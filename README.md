@@ -4,6 +4,9 @@ Each user has profile where he can describe himself. Students can create posts i
 Users can ask to join a specific project but must be approved by the owner.
 A profile has feedback section where others could see all the reviews and write one by themselves.
 
+# Goals
+> The platform aims to make students more communicative as well as to teach them to work in team while improving their learning skills and analythical thinking.
+
 # Technologies
  > ### Front-end
  >> * Angular
