@@ -12,6 +12,7 @@ A profile has feedback section where others could see all the reviews and write 
  >> * Angular
  >> * TypeScript
  >> * CSS
+ >> * [IgniteUI for Angular library](https://www.infragistics.com/products/ignite-ui-angular)
  > ### Back-end
  >> * Node.js
  >> * Express.js
