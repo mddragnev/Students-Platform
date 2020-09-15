@@ -19,3 +19,6 @@ A profile has feedback section where others could see all the reviews and write 
  >> * ECMAScript 6+
  >> * MongoDB
  >> * TypeScript
+ >> * Json Web Token
+ >> * Bcrypt
+ >> * Multer
