@@ -1,1 +1,19 @@
-<mat-toolbar color="primary">My header</mat-toolbar>
+<mat-toolbar color="primary">
+     <span>
+       <a igxButton routerLink="">List posts</a>
+     </span>
+     <span class='spacer'></span>
+     <span *ngIf="isUserAuthenticated">
+       <a igxButton routerLink="/create" > Add new post</a>
+     </span>
+     <span *ngIf="!isUserAuthenticated">
+      <a igxButton routerLink="/login" > Login</a>
+     </span>
+     <span *ngIf="!isUserAuthenticated">
+      <a igxButton routerLink="/signup" > Sign up</a>
+     </span>
+     <span *ngIf="isUserAuthenticated">
+      <button igxButton="raised" (click)="onLogout()"> Logout</button>
+     </span>
+
+</mat-toolbar>
