@@ -1,0 +1,19 @@
+<igx-card>
+  <igx-circular-bar class="spinner" [animate]="true" [indeterminate]="true" [textVisibility]="false" *ngIf="isLoading">
+  </igx-circular-bar >
+    <form  (submit)="onSignup(signupForm)" #signupForm="ngForm" *ngIf="!isLoading">
+      <igx-card-content>
+        <igx-input-group>
+          <input igxInput name="email" ngModel type="email"  #emailInput="ngModel" required email>
+          <label igxLabel for="email">E-Mail</label>
+        </igx-input-group>
+      </igx-card-content>
+      <igx-card-content>
+        <igx-input-group>
+          <input igxInput name="password" ngModel type="password" #passwordInput="ngModel" required >
+          <label igxLabel for="password">Password</label>
+        </igx-input-group>
+      </igx-card-content>
+      <button *ngIf="!isLoading" igxButton="raised" type="submit" color='primary'>Sign up</button>
+    </form>
+</igx-card>

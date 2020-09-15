@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 import { Post } from './posts/post.model';
+import { AuthService } from './auth/auth.service';
 
 
 @Component({
@@ -8,10 +9,12 @@ import { Post } from './posts/post.model';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
- posts: Post[] = [];
+export class AppComponent implements OnInit {
 
- onPostAdded(post) {
-  this.posts.push(post);
- }
+  constructor(private authSerivce: AuthService) {}
+
+  ngOnInit() {
+    this.authSerivce.authoAuthUser();
+  }
+
 }
