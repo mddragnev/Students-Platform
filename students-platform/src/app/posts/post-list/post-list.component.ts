@@ -21,6 +21,7 @@ export class PostListComponent implements OnInit, OnDestroy {
   private postSub: Subscription;
 
   public isUserAuthenticated = false;
+  public userId: string;
   private authStatusSub: Subscription;
 
   constructor(public postService: PostsSerivce, private authService: AuthService) {}
@@ -28,6 +29,7 @@ export class PostListComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.isLoading = true;
     this.postService.getPosts(this.postsPerPage, this.currentPage);
+    this.userId = this.authService.getUserId();
     this.postSub = this.postService.getPostUpdateListener()
       .subscribe((postData: {posts: Post[], postCount: number}) => {
         this.posts = postData.posts;
@@ -37,6 +39,9 @@ export class PostListComponent implements OnInit, OnDestroy {
     this.isUserAuthenticated = this.authService.getIsAuthenticated();
     this.authStatusSub = this.authService.getAuthStatusListener().subscribe(isAuthenticated => {
       this.isUserAuthenticated = isAuthenticated;
+      this.userId = this.authService.getUserId();
+    }, () => {
+      this.isLoading = false;
     });
   }
 

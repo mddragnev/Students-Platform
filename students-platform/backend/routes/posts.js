@@ -32,7 +32,8 @@ router.post('', checkAuth, multer({storage: storage}).single('image'), (req, res
   const post = new Post({
     title: req.body.title,
     content: req.body.content,
-    imagePath: url + '/images/' + req.file.filename
+    imagePath: url + '/images/' + req.file.filename,
+    creator: req.userData.id
   });
   post.save()
     .then(result => {
@@ -42,6 +43,11 @@ router.post('', checkAuth, multer({storage: storage}).single('image'), (req, res
           ...result,
           id: result._id
         }
+      });
+    })
+    .catch(error => {
+      res.status(500).json({
+        message: 'Creating a post failed!'
       });
     });
 });
@@ -70,6 +76,11 @@ router.get('' ,(req, res, next) => {
         posts: fetchedPosts,
         maxPosts: count
       });
+    })
+    .catch(error => {
+      res.status(500).json({
+        message: 'Fetching post failed'
+      });
     });
 });
 
@@ -81,7 +92,12 @@ router.get('/:id', (req, res, next) => {
       } else {
         res.status(404).json( {message: 'Post not found!'});
       }
-    })
+    }).
+    catch(error => {
+      res.status(500).json({
+        message: 'Fetching post failed'
+    });
+  });
 });
 
 router.put("/:id",checkAuth, multer({storage: storage}).single('image'), (req, res, next) => {
@@ -94,20 +110,40 @@ router.put("/:id",checkAuth, multer({storage: storage}).single('image'), (req, r
     _id: req.body.id,
     title: req.body.title,
     content: req.body.content,
-    imagePath: imagePath
+    imagePath: imagePath,
+    creataor: req.userData.id
   });
-  Post.updateOne({_id: req.params.id}, post)
+  Post.updateOne({_id: req.params.id, creator: req.userData.id}, post)
     .then(result => {
-      res.status(200).json(result)
+      if (result.nModified > 0) {
+        res.status(200).json(result);
+      } else {
+        res.status(401).json({ message: "Not Authorized!"});
+      }
+    })
+    .catch(error => {
+      res.status(500).json({
+        message: 'Couldn`t update post!'
+      });
     });
 });
 
 router.delete('/:id', checkAuth, (req,res,next) => {
   Post.deleteOne({
-    _id: req.params.id
+    _id: req.params.id,
+    creator: req.userData.id
   })
     .then( result => {
-      res.status(200).json( {message: "Post deleted!"});
+      if (result.n > 0) {
+        res.status(200).json({message : "Post Deleted!"});
+      } else {
+        res.status(401).json({ message: "Not Authorized!"});
+      }
+    })
+    .catch(error => {
+      res.status(500).json({
+        message: 'Deleting post failed!'
+      });
     });
 });
 

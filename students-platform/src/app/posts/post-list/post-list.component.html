@@ -9,7 +9,7 @@
       <img [src]="post.imagePath" [alt]="post.title">
     </div>
     <p>{{post.content}}</p>
-    <mat-action-row *ngIf="isUserAuthenticated">
+    <mat-action-row *ngIf="isUserAuthenticated && userId === post.creator">
       <a igxButton [routerLink]="['/edit',post.id]" color="primary"> EDIT </a>
       <button mat-button color="warn" (click)="onDelete(post.id)"> DELETE </button>
     </mat-action-row>
