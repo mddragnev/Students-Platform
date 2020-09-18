@@ -13,6 +13,7 @@ export const mimeType = (control: AbstractControl): Promise<{[key: string]: any}
       let header = '';
       let isValid = false;
       for (let i = 0; i < arr.length; ++i) {
+        // converting number to hex string
         header += arr[i].toString(16);
       }
       switch (header) {

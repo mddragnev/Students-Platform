@@ -22,7 +22,7 @@ export class AuthGuard implements CanActivate {
     | Promise<boolean> {
     const isAuth = this.authService.getIsAuthenticated();
     if (!isAuth) {
-      this.router.navigate(['/']);
+      this.router.navigate(['/login']);
     }
     return isAuth;
   }

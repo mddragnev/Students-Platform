@@ -12,16 +12,21 @@
 }
 
 .post-image {
-  width: 250px;
-  height: 350px;
+  width: 100%;
+  height: 600px;
 }
 
 .post-image img {
   width: 100%;
   height: 100%;
   box-shadow: 1px 1px 5px rgba(0,0,0,0.5);
+  object-fit: contain;
 }
 
 mat-paginator {
   margin-top: 16px;
+}
+
+mat-expansion-panel-body {
+  height: 600px;
 }
