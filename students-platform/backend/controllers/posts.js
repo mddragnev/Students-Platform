@@ -6,7 +6,8 @@ exports.createPost = (req, res, next) => {
     title: req.body.title,
     content: req.body.content,
     imagePath: url + '/images/' + req.file.filename,
-    creator: req.userData.id
+    creator: req.userData.id,
+    creatorEmail: req.userData.email
   });
   post.save()
     .then(result => {
@@ -36,7 +37,8 @@ exports.updatePost = (req, res, next) => {
     title: req.body.title,
     content: req.body.content,
     imagePath: imagePath,
-    creataor: req.userData.id
+    creataor: req.userData.id,
+    creatorEmail: req.userData.email
   });
   Post.updateOne({_id: req.params.id, creator: req.userData.id}, post)
     .then(result => {
@@ -99,6 +101,23 @@ exports.getPost = (req, res, next) => {
         message: 'Fetching post failed'
     });
   });
+};
+
+exports.getPostForUser = (req, res, next) => {
+  const doc = Post.find({creator: req.userData.id})
+    .then(posts => {
+      console.log(posts);
+      if (posts) {
+        res.status(200).json(posts);
+      } else {
+        res.status(404).json( {message: 'Posts not found!'});
+      }
+    })
+    .catch(error => {
+      res.status(500).json({
+        message: 'Unable to fetch the posts'
+      });
+    });
 };
 
 exports.deletePost = (req,res,next) => {

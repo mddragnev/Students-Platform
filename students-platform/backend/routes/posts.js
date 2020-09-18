@@ -14,6 +14,8 @@ router.get('' , PostController.getPosts);
 
 router.get('/:id', PostController.getPost);
 
+router.get('/userPosts/posts', checkAuth, PostController.getPostForUser);
+
 router.put("/:id",checkAuth, extractFile, PostController.updatePost );
 
 router.delete('/:id', checkAuth, PostController.deletePost);

@@ -52,12 +52,14 @@ export class PostCreateComponent implements OnInit, OnDestroy {
             title: postData.title,
             content: postData.content,
             imagePath: postData.imagePath,
-            creator: postData.creator
+            creator: postData.creator,
+            creatorEmail: postData.creatorEmail
           };
           this.form.setValue({
             title: this.post.title,
             content: this.post.content,
-            image: this.post.imagePath
+            image: this.post.imagePath,
+            creatorEmail: this.post.creatorEmail
           });
         });
       } else {

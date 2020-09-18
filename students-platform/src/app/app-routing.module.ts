@@ -5,11 +5,17 @@ import { PostCreateComponent } from './posts/post-create/post-create.component';
 import { LoginComponent } from './auth/login/login.component';
 import { SignupComponent } from './auth/signup/signup.component';
 import { AuthGuard } from './auth/auth.guard';
+import { UserPostsComponent } from './posts/user-posts/user-posts.component';
 
 const routes: Routes = [
   {
     path: '',
     component: PostListComponent,
+  },
+  {
+    path: 'userPost',
+    component: UserPostsComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'create',

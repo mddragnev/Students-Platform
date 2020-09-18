@@ -31,6 +31,7 @@ export class PostsSerivce {
                 id: post._id,
                 imagePath: post.imagePath,
                 creator: post.creator,
+                creatorEmail: post.creatorEmail
               };
             }),
             maxPosts: postData.maxPosts,
@@ -46,6 +47,25 @@ export class PostsSerivce {
       });
   }
 
+  getPostsForUser() {
+    return this.http.get<{posts: []}>(API_URL + 'userPosts/posts')
+    .pipe(map((postData) => {
+      return {
+        posts: postData.map((post) => {
+          return {
+            title: post.title,
+            content: post.content,
+            id: post._id,
+            imagePath: post.imagePath,
+            creator: post.creator,
+            creatorEmail: post.creatorEmail
+          };
+        })
+      };
+    })
+    );
+  }
+
   getPostUpdateListener() {
     return this.postsUpdated.asObservable();
   }
@@ -57,6 +77,7 @@ export class PostsSerivce {
       content: string;
       imagePath: string;
       creator: string;
+      creatorEmail: string;
     }>(API_URL + id);
   }
 
@@ -91,6 +112,7 @@ export class PostsSerivce {
         content,
         imagePath: image,
         creator: null,
+        creatorEmail: null
       };
     }
 
