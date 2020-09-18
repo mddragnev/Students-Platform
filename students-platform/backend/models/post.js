@@ -11,8 +11,17 @@ const postSchema = mongoose.Schema({
   },
   imagePath: {
     type: String,
-    require: true
+    required: true
+  },
+  creator: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User',
+    required: true
+  },
+  creatorEmail: {
+    type: String
   }
 });
+
 
 module.exports = mongoose.model('Post', postSchema);

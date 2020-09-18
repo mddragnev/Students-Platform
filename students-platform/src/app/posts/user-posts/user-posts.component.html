@@ -14,11 +14,10 @@
       <img [src]="post.imagePath" [alt]="post.title">
     </div>
     <p>{{post.content}}</p>
-    <mat-action-row *ngIf="isUserAuthenticated && userId === post.creator">
+    <!-- <mat-action-row *ngIf="isUserAuthenticated && userId === post.creator">
       <a igxButton [routerLink]="['/edit',post.id]" color="primary"> EDIT </a>
       <button mat-button color="warn" (click)="onDelete(post.id)"> DELETE </button>
-    </mat-action-row>
+    </mat-action-row> -->
   </mat-expansion-panel>
 </mat-accordion>
-<mat-paginator *ngIf="posts.length > 0" [length]="totalPosts" [pageSize]="postsPerPage" [pageSizeOptions]="pageSizeOptions" (page)="onChangedPage($event)"></mat-paginator>
 <p class="info-text mat-body-2" *ngIf="posts.length <= 0 && !isLoading">No post added yet!</p>
