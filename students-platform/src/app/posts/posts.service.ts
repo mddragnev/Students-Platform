@@ -47,25 +47,6 @@ export class PostsSerivce {
       });
   }
 
-  getPostsForUser() {
-    return this.http.get<{posts: []}>(API_URL + 'userPosts/posts')
-    .pipe(map((postData) => {
-      return {
-        posts: postData.map((post) => {
-          return {
-            title: post.title,
-            content: post.content,
-            id: post._id,
-            imagePath: post.imagePath,
-            creator: post.creator,
-            creatorEmail: post.creatorEmail
-          };
-        })
-      };
-    })
-    );
-  }
-
   getPostUpdateListener() {
     return this.postsUpdated.asObservable();
   }
