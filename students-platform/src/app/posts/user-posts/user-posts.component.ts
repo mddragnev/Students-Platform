@@ -26,10 +26,6 @@ export class UserPostsComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.isLoading = true;
     this.userId = this.authService.getUserId();
-    this.postService.getPostsForUser().subscribe((data) => {
-      this.posts = data.posts;
-      this.isLoading = false;
-    });
     this.isUserAuthenticated = this.authService.getIsAuthenticated();
     this.authStatusSub = this.authService.getAuthStatusListener().subscribe(isAuthenticated => {
       this.isUserAuthenticated = isAuthenticated;
