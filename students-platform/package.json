@@ -26,7 +26,7 @@
     "@types/jszip": "^3.1.7",
     "bcrypt": "^5.0.0",
     "body-parser": "^1.19.0",
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "hammerjs": "^2.0.8",
     "igniteui-angular": "^8.2.31",
     "jsonwebtoken": "^8.5.1",
